@@ -1,0 +1,231 @@
+/* Design System & Custom Properties */
+:root {
+  --primary-color: #2e7d32;     /* Forest Green */
+  --primary-hover: #1b5e20;     /* Darker Green */
+  --accent-color: #81c784;      /* Light Sage Green */
+  --bg-color: #f1f8e9;          /* Very light green tint */
+  --surface-color: #ffffff;     /* White for containers */
+  --text-color: #263238;        /* Dark Slate */
+  --text-muted: #546e7a;        /* Medium Slate */
+  --error-color: #c62828;       /* Deep Red */
+  --error-bg: #ffebee;          /* Light Red Tint */
+  --border-color: #cfd8dc;      /* Light Gray/Blue */
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.2s ease-in-out;
+}
+
+/* 2. Core Reset & Typography */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* 3. Layout Structure */
+.app-header {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.app-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .app-main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.app-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* 4. Component Sections (Cards) */
+.sensor-entry, .log-history {
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  height: fit-content;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--bg-color);
+  padding-bottom: 0.5rem;
+}
+
+/* 5. Forms & Inputs */
+.form-field {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: #ffffff;
+  transition: var(--transition);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+}
+
+/* Small hint or limit indicators */
+input + small, select + small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   6. Buttons & Interactions
+   ========================================================================== */
+button {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  display: inline-block;
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--primary-hover);
+}
+
+#clear-logs {
+  background-color: transparent;
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+#clear-logs:hover {
+  background-color: var(--error-bg);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+/* 7. Feedback, Logs & State Management */
+/* Banners and Alerts */
+.error-banner {
+  background-color: var(--error-bg);
+  color: var(--error-color);
+  padding: 1rem;
+  border-left: 4px solid var(--error-color);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.field-error {
+  color: var(--error-color) !important;
+  font-weight: 500;
+}
+
+#form-feedback, #storage-feedback {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+#log-count {
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+#empty-state {
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* Interactive Log List */
+#log-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#log-list li {
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid var(--accent-color);
+  font-size: 0.95rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Utility to honor the 'hidden' attribute properly */
+[hidden] {
+  display: none !important;
+}
