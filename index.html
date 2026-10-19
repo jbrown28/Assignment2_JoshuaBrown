@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Greenhouse sensor monitoring and telemetry logging dashboard">
+  <title>Greenhouse Sensor Logger</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Greenhouse Sensor Logger</h1>
+    <p>Environmental telemetry monitoring</p>
+  </header>
+
+  <main class="app-main">
+    <section class="sensor-entry" aria-labelledby="entry-heading">
+      <h2 id="entry-heading">Record Sensor Reading</h2>
+
+      <div id="form-error" class="error-banner"
+           role="alert" hidden></div>
+
+      <form id="sensor-form">
+        <div class="form-field">
+          <label for="bay">Greenhouse Bay</label>
+          <select id="bay" name="bay" required>
+            <option value="">Select a bay</option>
+            <option value="Bay 01">Bay 01</option>
+            <option value="Bay 02">Bay 02</option>
+            <option value="Bay 03">Bay 03</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="ph">pH (0–14)</label>
+          <input id="ph" name="ph" type="number"
+                 min="0" max="14" step="0.1" required>
+          <small id="ph-error" class="field-error" hidden></small>
+        </div>
+
+        <div class="form-field">
+          <label for="ec">Electrical Conductivity (mS/cm)</label>
+          <input id="ec" name="ec" type="number" required>
+          <small id="ec-error" class="field-error" hidden></small>
+        </div>
+
+        <div class="form-field">
+          <label for="temperature">Air Temperature (°F)</label>
+          <input id="temperature" name="temperature"
+                 type="number" required>
+          <small id="temperature-error"
+                 class="field-error" hidden></small>
+        </div>
+
+        <div class="form-field">
+          <label for="humidity">Relative Humidity (%)</label>
+          <input id="humidity" name="humidity"
+                 type="number" required>
+          <small id="humidity-error"
+                 class="field-error" hidden></small>
+        </div>
+
+        <button type="submit">Record Reading</button>
+      </form>
+
+      <p id="form-feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="log-history" aria-labelledby="history-heading">
+      <h2 id="history-heading">Sensor Log History</h2>
+
+      <p id="log-count">Recorded readings: 0</p>
+
+      <button id="clear-logs" type="button">
+        Clear All Logs
+      </button>
+
+      <p id="empty-state">No readings recorded yet.</p>
+      <ul id="log-list" aria-label="Recorded sensor readings"></ul>
+
+      <p id="storage-feedback" role="status"
+         aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Greenhouse Sensor Logger</p>
+  </footer>
+</body>
+</html>
